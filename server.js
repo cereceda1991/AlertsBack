@@ -2,19 +2,19 @@ const express = require('express');
 const http = require('http');
 const socketIo = require('socket.io');
 const cors = require('cors');
+require('dotenv').config(); 
 
 const app = express();
-let server = http.createServer(app);
+const server = http.createServer(app);
 const io = socketIo(server);
 
-// Configura CORS para permitir todas las solicitudes
+const PORT = process.env.PORT || 3001;
+
 app.use(cors({
     origin: '*',
-    methods: ['GET', 'POST'], // Puedes ajustar los métodos según tus necesidades
+    methods: ['GET', 'POST'], 
 }));
 
-
-// Agrega un endpoint para mostrar un mensaje en el navegador
 app.get('/', (req, res) => {
     res.send('¡El servidor WebSocket está en línea!');
 });
@@ -32,7 +32,6 @@ io.on('connection', (socket) => {
     });
 });
 
-server = app.listen(process.env.PORT || 3000, () => {
-    console.log(`Servidor en línea en el puerto ${server.address().port}`);
+server.listen(PORT, () => {
+    console.log(`Servidor en línea en el puerto ${PORT}`);
 });
-
