@@ -4,7 +4,7 @@ const socketIo = require('socket.io');
 const cors = require('cors');
 
 const app = express();
-const server = http.createServer(app);
+let server = http.createServer(app);
 const io = socketIo(server);
 
 // Configura CORS para permitir todas las solicitudes
