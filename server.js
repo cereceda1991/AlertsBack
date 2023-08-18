@@ -32,6 +32,7 @@ io.on('connection', (socket) => {
     });
 });
 
-server.listen(3001, () => {
-    console.log('Servidor en línea en el puerto 3001');
+server = app.listen(process.env.PORT || 3000, () => {
+    console.log(`Servidor en línea en el puerto ${server.address().port}`);
 });
+
